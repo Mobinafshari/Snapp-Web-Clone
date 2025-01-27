@@ -1,16 +1,14 @@
 import '@config/i18n';
+import Auth from '@features/authentication/Auth';
+import Home from '@features/Home/Home';
+import { Routes, Route } from 'react-router';
 
 function App() {
   return (
-    <p
-      style={{
-        fontSize: '36px',
-        lineHeight: '52px',
-        fontWeight: 700,
-      }}
-    >
-      تجربه‌ی زندگی راحت‌تر، سریع‌تر و به‌صرفه‌تر با سوپراپلیکیشن اسنپ!
-    </p>
+    <Routes>
+      <Route path="/authentication" element={<Auth />} />
+      <Route path="/" element={<Home />} />
+    </Routes>
   );
 }
 

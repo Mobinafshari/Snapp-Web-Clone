@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles/main.scss';
+import { BrowserRouter } from 'react-router';
 
 // if ('serviceWorker' in navigator) {
 //   navigator.serviceWorker
@@ -13,4 +14,8 @@ import './styles/main.scss';
 //     });
 // }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
