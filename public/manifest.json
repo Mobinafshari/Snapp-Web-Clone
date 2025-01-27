@@ -1,0 +1,23 @@
+{
+  "name": "My React Vite App",
+  "short_name": "Rayka",
+  "start_url": "../index.html",
+  "display": "standalone",
+  "orientation" : "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#317EFB",
+  "description" : "Rayka web app",
+  "dir":"rtl",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
