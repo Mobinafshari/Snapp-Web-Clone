@@ -6,7 +6,11 @@ type Props = ButtonProps & {
 };
 
 function CustomButton({ children, ...rest }: Props) {
-  return <Button {...rest}>{children}</Button>;
+  return (
+    <Button {...rest} sx={{ padding: 0, minWidth: '48px' }}>
+      {children}
+    </Button>
+  );
 }
 
 export default CustomButton;
