@@ -39,14 +39,14 @@ function OTPForm() {
           </span>
         </p>
         <OTP />
-        <div className="otp__wrong-number">
+        <div className={styles['otp__resend']}>
           {timer > 0 ? (
             <p>
               ارسال دوباره کد تایید تا{' '}
               {`00:${timer.toString().padStart(2, '0')}`}
             </p>
           ) : (
-            <p className={styles['otp__resend']}>
+            <p className={styles['otp__resend-text']}>
               ارسال دوبارهٔ کد با تماس تلفنی
             </p>
           )}

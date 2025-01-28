@@ -1,21 +1,30 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import styles from './styles/otpForm.module.scss';
+import { useNavigate } from 'react-router';
 
 function OTP() {
   const [otp, setOtp] = useState<string[]>(new Array(6).fill(''));
+  const navigate = useNavigate();
   const handleChange = (element: HTMLInputElement, index: number) => {
     if (isNaN(Number(element.value))) return false;
 
-    setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
+    const newOtp = [
+      ...otp.map((d, idx) => (idx === index ? element.value : d)),
+    ];
+    setOtp(newOtp);
 
     if (element.value && element.nextSibling) {
       (element.nextSibling as HTMLInputElement).focus();
+    }
+
+    if (newOtp.every((digit) => digit !== '')) {
+      handleSubmit(new Event('submit') as unknown as FormEvent);
     }
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    alert('Entered OTP is ' + otp.join(''));
+    navigate('/home');
   };
 
   return (

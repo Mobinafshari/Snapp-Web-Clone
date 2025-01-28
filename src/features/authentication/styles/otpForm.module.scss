@@ -50,7 +50,8 @@
     direction: ltr;
   }
   &__input {
-    border-bottom: 2px solid #252a3c;
+    color: #3a3c43;
+    border-bottom: 2px solid #686c79;
     width: 48px;
     height: 48px;
     outline: none;
@@ -61,6 +62,11 @@
     }
   }
   &__resend {
-    color: $color-span;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    &-text {
+      color: $color-span;
+    }
   }
 }
