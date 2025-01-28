@@ -30,6 +30,7 @@ $color-span: #575eff;
     color: $color-paragraph;
     span {
       color: $color-span;
+      cursor: pointer;
     }
   }
   &__input {

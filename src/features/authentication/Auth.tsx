@@ -2,8 +2,11 @@ import CustomButton from '@components/Button/CustomButton';
 import styles from './styles/authentication.module.scss';
 import CustomTextField from '@components/TextField/CustomTextField';
 import { ArrowBackOutlined } from '@mui/icons-material';
+import { useState } from 'react';
 
 function Auth() {
+  const [input, setInput] = useState('');
+
   return (
     <section className={styles['auth']}>
       <div className={styles['auth__language']}>
@@ -18,6 +21,7 @@ function Auth() {
         <CustomTextField
           className={styles['auth__input']}
           label="شماره موبایل"
+          onChange={(e) => setInput(e.target.value)}
         />
         <p className={styles['auth__paragraph']}>
           با ثبت نام در اسنپ، <span>قوانین و شرایط</span> و{' '}
