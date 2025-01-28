@@ -13,7 +13,6 @@ import theme from '@utils/theme';
 export default function ThemeProvider({ children }: { children: ReactNode }) {
   const { i18n } = useTranslation();
   const dir = i18n.dir(i18n.resolvedLanguage);
-  console.log(dir);
   useEffect(() => {
     document.body.style.direction = dir;
     document.documentElement.setAttribute('data-dir', dir);

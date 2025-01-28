@@ -15,10 +15,10 @@ $color-span: #575eff;
     }
   }
   &-provider {
-    padding: 32px 24px 0;
     display: flex;
     flex-direction: column;
     gap: 24px;
+    padding: 32px 24px 0;
   }
   &__heading {
     color: $color-heading;

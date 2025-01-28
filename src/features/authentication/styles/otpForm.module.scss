@@ -1,0 +1,66 @@
+@import '../../../styles/variables';
+
+.otp {
+  padding: 32px 24px 0;
+  display: flex;
+  flex-direction: column;
+  &__back {
+    height: 56px;
+    display: flex;
+    justify-content: start;
+    padding: 0 16px;
+    button {
+      height: 40px;
+    }
+  }
+  &__heading {
+    color: $color-heading;
+    letter-spacing: 0em;
+    font-weight: 400;
+    font-size: 1.4375rem;
+    margin-bottom: 12px;
+  }
+  &__paragraph {
+    font-size: 14px;
+    color: $color-paragraph;
+    margin-bottom: 16px;
+
+    span {
+      color: $color-heading;
+      cursor: pointer;
+    }
+  }
+  &__wrong-number {
+    margin-bottom: 24px;
+    font-size: 14px !important;
+    span {
+      color: $color-span;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+  &__form {
+    margin-bottom: 24px;
+  }
+  &__inputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    direction: ltr;
+  }
+  &__input {
+    border-bottom: 2px solid #252a3c;
+    width: 48px;
+    height: 48px;
+    outline: none;
+    text-align: center;
+    font-size: 23px;
+    &:focus {
+      border-bottom: 2px solid $color-span;
+    }
+  }
+  &__resend {
+    color: $color-span;
+  }
+}
