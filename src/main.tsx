@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles/main.scss';
 import { BrowserRouter } from 'react-router';
+import ThemeProvider from '@context/ThemeProvider';
 
 // if ('serviceWorker' in navigator) {
 //   navigator.serviceWorker
@@ -16,6 +17,8 @@ import { BrowserRouter } from 'react-router';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
-    <App />
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   </BrowserRouter>
 );
