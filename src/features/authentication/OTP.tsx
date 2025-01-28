@@ -1,31 +1,44 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, {
+  useState,
+  ChangeEvent,
+  FormEvent,
+  memo,
+  useCallback,
+  useRef,
+} from 'react';
 import styles from './styles/otpForm.module.scss';
 import { useNavigate } from 'react-router';
 
 function OTP() {
   const [otp, setOtp] = useState<string[]>(new Array(6).fill(''));
+  const otpRef = useRef<string[]>(new Array(6).fill(''));
   const navigate = useNavigate();
-  const handleChange = (element: HTMLInputElement, index: number) => {
-    if (isNaN(Number(element.value))) return false;
 
-    const newOtp = [
-      ...otp.map((d, idx) => (idx === index ? element.value : d)),
-    ];
-    setOtp(newOtp);
+  const handleChange = useCallback(
+    (element: HTMLInputElement, index: number) => {
+      if (isNaN(Number(element.value))) return false;
 
-    if (element.value && element.nextSibling) {
-      (element.nextSibling as HTMLInputElement).focus();
-    }
+      otpRef.current[index] = element.value;
+      setOtp([...otpRef.current]);
 
-    if (newOtp.every((digit) => digit !== '')) {
-      handleSubmit(new Event('submit') as unknown as FormEvent);
-    }
-  };
+      if (element.value && element.nextSibling) {
+        (element.nextSibling as HTMLInputElement).focus();
+      }
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    navigate('/home');
-  };
+      if (otpRef.current.every((digit) => digit !== '')) {
+        handleSubmit(new Event('submit') as unknown as FormEvent);
+      }
+    },
+    []
+  );
+
+  const handleSubmit = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault();
+      navigate('/home');
+    },
+    [navigate]
+  );
 
   return (
     <form onSubmit={handleSubmit} className={styles['otp__form']}>
@@ -53,4 +66,4 @@ function OTP() {
   );
 }
 
-export default OTP;
+export default memo(OTP);
