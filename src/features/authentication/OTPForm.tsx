@@ -3,27 +3,18 @@ import styles from './styles/otpForm.module.scss';
 import CustomButton from '@components/Button/CustomButton';
 import { ArrowForwardOutlined } from '@mui/icons-material';
 import OTP from './OTP';
-import { useEffect, useState } from 'react';
+import Timer from '@components/Timer/Timer';
 
 function OTPForm() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const phone = searchParams.get('phoneNumber');
-  const [timer, setTimer] = useState(59);
-
-  useEffect(() => {
-    if (timer > 0) {
-      const intervalId = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
-      }, 1000);
-      return () => clearInterval(intervalId);
-    }
-  }, [timer]);
-
+  const handleOtpSubmit = () => navigate('/home');
+  const backward = '/authentication/enter-phone';
   return (
     <div>
       <div className={styles['otp__back']}>
-        <CustomButton onClick={() => navigate(-1)}>
+        <CustomButton onClick={() => navigate(backward)}>
           <ArrowForwardOutlined />
         </CustomButton>
       </div>
@@ -34,22 +25,11 @@ function OTPForm() {
         </p>
         <p className={styles['otp__wrong-number']}>
           شمارهٔ موبایل اشتباه است؟{' '}
-          <span onClick={() => navigate('/authentication/enter-phone')}>
-            ویرایش
-          </span>
+          <span onClick={() => navigate(backward)}>ویرایش</span>
         </p>
-        <OTP />
+        <OTP handleOtpSubmit={handleOtpSubmit} />
         <div className={styles['otp__resend']}>
-          {timer > 0 ? (
-            <p>
-              ارسال دوباره کد تایید تا{' '}
-              {`00:${timer.toString().padStart(2, '0')}`}
-            </p>
-          ) : (
-            <p className={styles['otp__resend-text']}>
-              ارسال دوبارهٔ کد با تماس تلفنی
-            </p>
-          )}
+          <Timer />
         </div>
       </div>
     </div>

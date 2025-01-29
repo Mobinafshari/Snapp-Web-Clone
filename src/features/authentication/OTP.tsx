@@ -1,44 +1,32 @@
-import React, {
-  useState,
-  ChangeEvent,
-  FormEvent,
-  memo,
-  useCallback,
-  useRef,
-} from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import styles from './styles/otpForm.module.scss';
-import { useNavigate } from 'react-router';
+type Props = {
+  count?: number;
+  handleOtpSubmit: () => void;
+};
+function OTP({ count = 6, handleOtpSubmit }: Props) {
+  const [otp, setOtp] = useState<string[]>(new Array(count).fill(''));
 
-function OTP() {
-  const [otp, setOtp] = useState<string[]>(new Array(6).fill(''));
-  const otpRef = useRef<string[]>(new Array(6).fill(''));
-  const navigate = useNavigate();
+  const handleChange = (element: HTMLInputElement, index: number) => {
+    if (isNaN(Number(element.value))) return false;
 
-  const handleChange = useCallback(
-    (element: HTMLInputElement, index: number) => {
-      if (isNaN(Number(element.value))) return false;
+    const newOtp = [...otp];
+    newOtp[index] = element.value;
+    setOtp(newOtp);
 
-      otpRef.current[index] = element.value;
-      setOtp([...otpRef.current]);
+    if (element.value && element.nextSibling) {
+      (element.nextSibling as HTMLInputElement).focus();
+    }
 
-      if (element.value && element.nextSibling) {
-        (element.nextSibling as HTMLInputElement).focus();
-      }
+    if (newOtp.every((digit) => digit !== '')) {
+      handleSubmit(new Event('submit') as unknown as FormEvent);
+    }
+  };
 
-      if (otpRef.current.every((digit) => digit !== '')) {
-        handleSubmit(new Event('submit') as unknown as FormEvent);
-      }
-    },
-    []
-  );
-
-  const handleSubmit = useCallback(
-    (e: FormEvent) => {
-      e.preventDefault();
-      navigate('/home');
-    },
-    [navigate]
-  );
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    handleOtpSubmit?.();
+  };
 
   return (
     <form onSubmit={handleSubmit} className={styles['otp__form']}>
@@ -66,4 +54,4 @@ function OTP() {
   );
 }
 
-export default memo(OTP);
+export default OTP;
