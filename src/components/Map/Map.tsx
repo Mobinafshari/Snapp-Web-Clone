@@ -21,6 +21,7 @@ export default function Map() {
     lat: markerPosition.lat,
     lng: markerPosition.lng,
   });
+
   // console.log('=====>', Address);
   // const fetchAddress = async (lng: number, lat: number) => {
   //   try {

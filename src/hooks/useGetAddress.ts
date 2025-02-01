@@ -16,12 +16,8 @@ const useGetAddress = (props: Props) => {
   const { data: Address, refetch } = useQuery({
     queryKey: [`address-${coordinates.lat}-${coordinates.lng}`],
     queryFn: () => getAddressApi(coordinates),
-
-    enabled: false,
   });
-
   useEffect(() => {
-    console.log('salam');
     if (Address) {
       let location;
       if (Address.features && Address.features.length > 0) {
