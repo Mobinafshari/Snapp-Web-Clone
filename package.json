@@ -44,7 +44,8 @@
     "react-router": "^7.1.3",
     "stylis": "^4.3.5",
     "stylis-plugin-rtl": "^2.1.1",
-    "zod": "^3.24.1"
+    "zod": "^3.24.1",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.11",
