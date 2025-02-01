@@ -3,28 +3,29 @@ import * as maptilersdk from '@maptiler/sdk';
 import '@maptiler/sdk/dist/maptiler-sdk.css';
 import './map.css';
 import useGetAddress from '@hooks/useGetAddress';
+import { useLocationStore } from 'store/location.store';
 
 export default function Map() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<maptilersdk.Map | null>(null);
   const markerRef = useRef<maptilersdk.Marker | null>(null);
-
+  const address = useLocationStore((state) => state.location);
   const [markerPosition, setMarkerPosition] = useState({
     lng: 51.3371,
     lat: 35.6997,
   });
-  const [address, setAddress] = useState<string | null>(null);
+  // const [address, setAddress] = useState<string | null>(null);
   const zoom = 16;
   const API_KEY = import.meta.env.VITE_MAPTILER_API_KEY;
-  const { Address } = useGetAddress({
+  const { fetchAddress } = useGetAddress({
     lat: markerPosition.lat,
     lng: markerPosition.lng,
   });
-  console.log('=====>', Address);
+  // console.log('=====>', Address);
   // const fetchAddress = async (lng: number, lat: number) => {
   //   try {
   //     const response = await fetch(
-  //       `https://api.maptiler.com/geocoding/${lng},${lat}.json?key=${API_KEY}`
+  //       `https://api.maptiler.com/geocoding/${lng},${lat}.json?limit=1&key=${API_KEY}`
   //     );
   //     const data = await response.json();
   //     console.log(data);
@@ -61,12 +62,11 @@ export default function Map() {
       const { lng, lat } = e.lngLat;
       setMarkerPosition({ lng, lat });
       markerRef.current?.setLngLat([lng, lat]);
-      // await fetchAddress(lng, lat);
+      await fetchAddress(lng, lat);
     });
 
     return () => map.current?.remove();
   }, [API_KEY]);
-  console.log(address);
   return (
     <div className="map-wrap">
       {address && <p>📍 Address: {address}</p>}
