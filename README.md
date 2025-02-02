@@ -1,2 +1,2 @@
 # Snapp-Web-Clone
-Simple Snapp web app clone
+Simple Snapp(Iranian equivalent of Uber) web app clone
