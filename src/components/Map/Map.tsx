@@ -14,32 +14,9 @@ export default function Map() {
     lng: 51.3371,
     lat: 35.6997,
   });
-  // const [address, setAddress] = useState<string | null>(null);
   const zoom = 16;
   const API_KEY = import.meta.env.VITE_MAPTILER_API_KEY;
-  const { fetchAddress } = useGetAddress({
-    lat: markerPosition.lat,
-    lng: markerPosition.lng,
-  });
-
-  // console.log('=====>', Address);
-  // const fetchAddress = async (lng: number, lat: number) => {
-  //   try {
-  //     const response = await fetch(
-  //       `https://api.maptiler.com/geocoding/${lng},${lat}.json?limit=1&key=${API_KEY}`
-  //     );
-  //     const data = await response.json();
-  //     console.log(data);
-  //     if (data.features && data.features.length > 0) {
-  //       setAddress(data.features[0].place_name_fa);
-  //     } else {
-  //       setAddress('Address not found');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching address:', error);
-  //     setAddress('Error fetching address');
-  //   }
-  // };
+  const { fetchAddress } = useGetAddress();
 
   useEffect(() => {
     if (map.current || !mapContainer.current) return;
@@ -63,7 +40,7 @@ export default function Map() {
       const { lng, lat } = e.lngLat;
       setMarkerPosition({ lng, lat });
       markerRef.current?.setLngLat([lng, lat]);
-      await fetchAddress(lng, lat);
+      await fetchAddress({ lng, lat });
     });
 
     return () => map.current?.remove();

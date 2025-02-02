@@ -8,7 +8,6 @@ type LocationState = {
 export const useLocationStore = create<LocationState>((set, _) => ({
   location: '',
   setLocation(loc) {
-    console.log(loc);
     set(() => ({
       location: loc,
     }));

@@ -1,38 +1,19 @@
 import { getAddressApi } from '@services/home';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useLocationStore } from 'store/location.store';
-import { useState, useEffect } from 'react';
-type Props = {
-  lat: number;
-  lng: number;
-};
-const useGetAddress = (props: Props) => {
-  const setLocation = useLocationStore((state) => state.setLocation);
-  const [coordinates, setCoordinates] = useState({
-    lat: props.lat,
-    lng: props.lng,
-  });
 
-  const { data: Address, refetch } = useQuery({
-    queryKey: [`address-${coordinates.lat}-${coordinates.lng}`],
-    queryFn: () => getAddressApi(coordinates),
-  });
-  useEffect(() => {
-    if (Address) {
-      let location;
-      if (Address.features && Address.features.length > 0) {
-        location = Address.features[0].text_fa;
+const useGetAddress = () => {
+  const { mutateAsync: fetchAddress } = useMutation({
+    mutationFn: getAddressApi,
+    onSuccess(data) {
+      if (data.features && data.features.length > 0) {
+        setLocation(data.features[0].text_fa);
       } else {
-        location = 'معبر بدون نام';
+        setLocation('معبر بدون نام');
       }
-      setLocation(location);
-    }
-  }, [Address, setLocation]);
-
-  const fetchAddress = (lng: number, lat: number) => {
-    setCoordinates({ lng, lat });
-    refetch();
-  };
+    },
+  });
+  const setLocation = useLocationStore((state) => state.setLocation);
 
   return {
     fetchAddress,
