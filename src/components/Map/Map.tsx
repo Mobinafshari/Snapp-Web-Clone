@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import * as maptilersdk from '@maptiler/sdk';
 import '@maptiler/sdk/dist/maptiler-sdk.css';
-import './map.css';
+import styles from './map.module.scss';
 import useGetAddress from '@hooks/useGetAddress';
 import { useLocationStore } from 'store/location.store';
 
@@ -46,9 +46,9 @@ export default function Map() {
     return () => map.current?.remove();
   }, [API_KEY]);
   return (
-    <div className="map-wrap">
+    <div className={styles['map-wrap']}>
       {address && <p>📍 Address: {address}</p>}
-      <div ref={mapContainer} className="map" />
+      <div ref={mapContainer} className={styles['map']} />
     </div>
   );
 }
