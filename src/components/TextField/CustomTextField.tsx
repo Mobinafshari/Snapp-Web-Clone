@@ -25,7 +25,6 @@ function CustomTextField({ sx, ...rest }: Props) {
           fontSize: 14,
         },
         '& .MuiInputBase-input': {
-          // direction: 'rtl',
           fontFamily: 'IRANSans_Light, Roboto',
         },
         ...sx,

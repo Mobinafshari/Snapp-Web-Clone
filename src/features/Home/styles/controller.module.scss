@@ -1,19 +1,40 @@
 .controller {
-  height: 25vh;
+  height: 27vh;
   display: flex;
   flex-direction: column;
   &__location {
-    flex-basis: 50%;
+    flex-basis: 60%;
+    padding: 24px 24px 16px;
   }
   &__button {
     position: relative;
-    flex-basis: 50%;
+    flex-basis: 40%;
     box-shadow:
       0 -8px 10px rgba(0, 0, 0, 0.04),
       0 -5px 5px rgba(0, 0, 0, 0.08);
     padding: 16px 24px 24px;
     button {
       height: 48px;
+      font-weight: 500;
+      font-size: 0.875rem;
+      line-height: 1rem;
+    }
+  }
+  &__input {
+    height: 100%;
+    padding: 24px 24px 16px;
+  }
+  &__search-box {
+    height: 56px;
+    padding: 0 1rem;
+    background-color: #f8f9ff;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 24px 1fr 24px;
+    h6 {
+      font-weight: 500;
+      font-size: 1.1875rem;
+      line-height: 1.5rem;
     }
   }
 }
