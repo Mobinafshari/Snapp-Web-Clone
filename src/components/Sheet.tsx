@@ -26,8 +26,7 @@ export default function Sheet({
   children,
   rootElement,
   onClose,
-  width = 370,
-  height = '100%',
+  height = '96%',
 }: SheetProps) {
   const isSmallScreen = useMediaQuery('(max-width:767px)');
   const drawerAnchor = isSmallScreen ? 'bottom' : anchor;
@@ -38,9 +37,11 @@ export default function Sheet({
       onClose={onClose}
       sx={{
         '& .MuiDrawer-paper': {
-          width: isSmallScreen ? 'auto' : width,
+          width: '100%',
           height: isSmallScreen ? '70%' : height,
           margin: '0 auto',
+          borderTopRightRadius: '12px',
+          borderTopLeftRadius: '12px',
         },
         zIndex: 999999,
       }}

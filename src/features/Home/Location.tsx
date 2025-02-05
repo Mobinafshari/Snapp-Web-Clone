@@ -1,29 +1,30 @@
-import CustomTextField from '@components/TextField/CustomTextField';
+import { useState } from 'react';
+import LocationSheet from './LocationSheet';
 import styles from './styles/controller.module.scss';
 import { AdjustOutlined, SearchOutlined } from '@mui/icons-material';
 
 function Location() {
+  const [openSheet, setOpenSheet] = useState(false);
+  const handleToggleForm = () => {
+    setOpenSheet(!openSheet);
+  };
   return (
-    <div className={styles['controller__location']}>
-      <div className={styles['controller__search-box']}>
-        <AdjustOutlined
-          fontSize="small"
-          style={{ color: '#575EFF', width: '15px' }}
-        />
-        <h6>کجا هستید؟</h6>
-        <SearchOutlined />
+    <>
+      <div className={styles['controller__location']}>
+        <div
+          className={styles['controller__search-box']}
+          onClick={handleToggleForm}
+        >
+          <AdjustOutlined
+            fontSize="small"
+            style={{ color: '#575EFF', width: '15px' }}
+          />
+          <h6>کجا هستید؟</h6>
+          <SearchOutlined />
+        </div>
       </div>
-      {/* <CustomTextField
-        sx={{
-          height: '100%',
-          padding: '24px 24px 16px',
-          border: 'none',
-          '& .MuiInputBase-input': {
-            backgroundColor: '#f8f9ff',
-          },
-        }}
-      /> */}
-    </div>
+      <LocationSheet openForm={openSheet} onClose={handleToggleForm} />
+    </>
   );
 }
 
