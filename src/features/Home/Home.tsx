@@ -1,10 +1,11 @@
 import Map from '@components/Map/Map';
+import RideControll from './RideControll';
 
 function Home() {
   return (
     <div>
-      Home
       <Map />
+      <RideControll />
     </div>
   );
 }

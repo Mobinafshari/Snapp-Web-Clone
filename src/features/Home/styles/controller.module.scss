@@ -1,0 +1,19 @@
+.controller {
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  &__location {
+    flex-basis: 50%;
+  }
+  &__button {
+    position: relative;
+    flex-basis: 50%;
+    box-shadow:
+      0 -8px 10px rgba(0, 0, 0, 0.04),
+      0 -5px 5px rgba(0, 0, 0, 0.08);
+    padding: 16px 24px 24px;
+    button {
+      height: 48px;
+    }
+  }
+}

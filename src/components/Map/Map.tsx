@@ -14,7 +14,7 @@ export default function Map() {
     lng: 51.3371,
     lat: 35.6997,
   });
-  const zoom = 16;
+  const zoom = 15;
   const API_KEY = import.meta.env.VITE_MAPTILER_API_KEY;
   const { fetchAddress } = useGetAddress();
 
@@ -47,7 +47,6 @@ export default function Map() {
   }, [API_KEY]);
   return (
     <div className={styles['map-wrap']}>
-      {address && <p>📍 Address: {address}</p>}
       <div ref={mapContainer} className={styles['map']} />
     </div>
   );

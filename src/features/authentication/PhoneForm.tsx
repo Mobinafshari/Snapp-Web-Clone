@@ -43,7 +43,7 @@ function PhoneForm() {
           <span>بیانیه ی حریم خصوصی</span> را قبول میکنم.
         </p>
         <div className={styles['auth__button']}>
-          <CustomButton variant="contained" isDisabled={!isValid}>
+          <CustomButton variant="contained" isDisabled={!isValid} type="submit">
             <ArrowBackOutlined style={{ color: 'white' }} />
           </CustomButton>
         </div>
