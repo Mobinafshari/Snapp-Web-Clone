@@ -47,6 +47,7 @@ export default [
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
       'no-constant-condition': 'off',
+      "react/display-name" : "off"
     },
   },
 ];

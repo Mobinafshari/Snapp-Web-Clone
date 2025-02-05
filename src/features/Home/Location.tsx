@@ -8,7 +8,7 @@ function Location() {
       <div className={styles['controller__search-box']}>
         <AdjustOutlined
           fontSize="small"
-          style={{ color: '#575EFF', width: '14px' }}
+          style={{ color: '#575EFF', width: '15px' }}
         />
         <h6>کجا هستید؟</h6>
         <SearchOutlined />
