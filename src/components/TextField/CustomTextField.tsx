@@ -10,6 +10,9 @@ function CustomTextField({ sx, ...rest }: Props) {
     <TextField
       {...rest}
       sx={{
+        '& .MuiInputBase-root': {
+          height: '47px',
+        },
         '& .MuiFormHelperText-root': {
           marginInlineStart: 0,
         },
@@ -25,7 +28,7 @@ function CustomTextField({ sx, ...rest }: Props) {
           fontSize: 14,
         },
         '& .MuiInputBase-input': {
-          fontFamily: 'IRANSans_Light, Roboto',
+          // fontFamily: 'IRANSans_Light, Roboto',
         },
         ...sx,
       }}

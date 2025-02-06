@@ -73,9 +73,9 @@ Sheet.Header = ({
   return (
     <Box
       sx={{
-        height: 64,
-        minHeight: 64,
-        boxShadow: '0px 0px 6px 0px rgba(0, 0, 0, 0.15)',
+        height: 56,
+        minHeight: 56,
+        // boxShadow: '0px 0px 6px 0px rgba(0, 0, 0, 0.15)',
       }}
     >
       {children ?? (
@@ -84,24 +84,27 @@ Sheet.Header = ({
             width: '100%',
             height: '100%',
             display: 'flex',
-            justifyContent: 'flex-start',
+            flexDirection: 'row-reverse',
             alignItems: 'center',
             padding: '0 17px',
             gap: 12,
+            color: '#252A3C',
           }}
         >
-          <IconButton onClick={onClose}>
+          <IconButton onClick={onClose} style={{ color: 'black' }}>
             <CloseOutlined />
           </IconButton>
-          <span
+          <h6
             style={{
-              fontSize: 16,
+              fontSize: 20,
               lineHeight: '26px',
-              fontWeight: 400,
+              fontWeight: 500,
+              flexBasis: '90%',
+              textAlign: 'center',
             }}
           >
             {title}
-          </span>
+          </h6>
         </div>
       )}
     </Box>
