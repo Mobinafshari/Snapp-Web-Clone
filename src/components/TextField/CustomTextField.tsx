@@ -10,6 +10,9 @@ function CustomTextField({ sx, ...rest }: Props) {
     <TextField
       {...rest}
       sx={{
+        borderRadius: '8px',
+        backgroundColor: '#ebecf2',
+        color: '#252A3C',
         '& .MuiInputBase-root': {
           height: '47px',
         },
@@ -25,14 +28,20 @@ function CustomTextField({ sx, ...rest }: Props) {
           top: 0,
         },
         '& .MuiInputBase-input, & .MuiOutlinedInput-notchedOutline': {
-          fontSize: 14,
+          fontSize: 16,
+          paddingTop: '12px',
+          color: 'black',
         },
-        '& .MuiInputBase-input': {
-          // fontFamily: 'IRANSans_Light, Roboto',
+        '& .MuiFilledInput-root::before': {
+          display: 'none',
+        },
+        '& .MuiFilledInput-root': {
+          borderBottom: 'none',
         },
         ...sx,
       }}
       fullWidth
+      variant="filled"
     />
   );
 }
