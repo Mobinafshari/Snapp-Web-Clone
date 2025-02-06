@@ -37,6 +37,7 @@ function PhoneForm() {
           {...register('phoneNumber')}
           className={styles['auth__input']}
           label="شماره موبایل"
+          variant="outlined"
         />
         <p className={styles['auth__paragraph']}>
           با ثبت نام در اسنپ، <span>قوانین و شرایط</span> و{' '}

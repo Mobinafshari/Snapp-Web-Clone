@@ -7,15 +7,23 @@ type Props = TextFieldProps & {
   sx?: SxProps<Theme> | undefined;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
+  variant?: 'filled' | 'standard' | 'outlined';
 };
 
-function CustomTextField({ sx, startIcon, endIcon, ...rest }: Props) {
+function CustomTextField({
+  sx,
+  startIcon,
+  endIcon,
+  variant = 'filled',
+  ...rest
+}: Props) {
   return (
     <TextField
+      variant={variant}
       {...rest}
       sx={{
         borderRadius: '8px',
-        backgroundColor: '#ebecf2',
+        backgroundColor: variant === 'filled' ? '#ebecf2' : '#fff',
         color: '#252A3C',
         '& .MuiInputBase-root': {
           height: '47px',
@@ -46,7 +54,6 @@ function CustomTextField({ sx, startIcon, endIcon, ...rest }: Props) {
         ...sx,
       }}
       fullWidth
-      variant="filled"
       slotProps={{
         input: {
           startAdornment: startIcon ? (
