@@ -13,6 +13,7 @@ function LocationSheet({ onClose, openForm }: Props) {
       <Sheet.Header onClose={onClose} title="مبدا" />
       <Sheet.Body>
         <CustomTextField
+          autoFocus
           placeholder="کجا هستید؟"
           startIcon={
             <AdjustOutlined

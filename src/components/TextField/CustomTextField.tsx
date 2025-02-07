@@ -26,7 +26,7 @@ function CustomTextField({
         backgroundColor: variant === 'filled' ? '#ebecf2' : '#fff',
         color: '#252A3C',
         '& .MuiInputBase-root': {
-          height: '47px',
+          height: variant === 'filled' ? '47px' : '',
         },
         '& .MuiFormHelperText-root': {
           marginInlineStart: 0,
@@ -41,7 +41,7 @@ function CustomTextField({
         },
         '& .MuiInputBase-input, & .MuiOutlinedInput-notchedOutline': {
           fontSize: 16,
-          paddingTop: '12px',
+          paddingTop: variant === 'filled' ? '12px' : '',
           paddingInlineStart: '8px',
           color: 'black',
         },
