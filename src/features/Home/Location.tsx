@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import LocationSheet from './LocationSheet';
 import styles from './styles/controller.module.scss';
-import { AdjustOutlined, SearchOutlined } from '@mui/icons-material';
+import {
+  AdjustOutlined,
+  KeyboardArrowUpOutlined,
+  SearchOutlined,
+} from '@mui/icons-material';
 
 function Location() {
   const [openSheet, setOpenSheet] = useState(false);
@@ -10,6 +14,9 @@ function Location() {
   };
   return (
     <>
+      <div className={styles['controller__up']}>
+        <KeyboardArrowUpOutlined width={20} style={{ color: '#EBECF2' }} />
+      </div>
       <div className={styles['controller__location']}>
         <div
           className={styles['controller__search-box']}

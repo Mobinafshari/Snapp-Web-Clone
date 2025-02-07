@@ -4,7 +4,7 @@
   flex-direction: column;
   &__location {
     flex-basis: 60%;
-    padding: 24px 24px 16px;
+    padding: 0 24px 16px;
   }
   &__button {
     position: relative;
@@ -37,5 +37,10 @@
       font-size: 1.1875rem;
       line-height: 1.5rem;
     }
+  }
+  &__up {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
