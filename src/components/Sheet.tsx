@@ -1,4 +1,11 @@
-import { Box, Drawer, IconButton, useMediaQuery } from '@mui/material';
+import {
+  Box,
+  Drawer,
+  IconButton,
+  SxProps,
+  Theme,
+  useMediaQuery,
+} from '@mui/material';
 import { CSSProperties, ReactNode } from 'react';
 import { Check, Close, CloseOutlined } from '@mui/icons-material';
 import CustomButton from './Button/CustomButton';
@@ -17,16 +24,18 @@ type SheetProps = {
   rootElement?: (props: { children: ReactNode }) => ReactNode;
   onClose?: () => void;
   width?: CSSProperties['width'] | ResponsiveWidth;
-  height?: CSSProperties['width'] | ResponsiveWidth;
+  height?: CSSProperties['height'] | ResponsiveWidth;
+  sx?: SxProps<Theme>;
 };
 
 export default function Sheet({
   open,
-  anchor = 'right',
+  anchor = 'bottom',
   children,
   rootElement,
   onClose,
   height = '96%',
+  sx,
 }: SheetProps) {
   const isSmallScreen = useMediaQuery('(max-width:767px)');
   const drawerAnchor = isSmallScreen ? 'bottom' : anchor;
@@ -36,12 +45,14 @@ export default function Sheet({
       anchor={drawerAnchor}
       onClose={onClose}
       sx={{
-        '& .MuiDrawer-paper': {
+        '& .MuiPaper-root': {
           width: '100%',
-          height: isSmallScreen ? '70%' : height,
+          height: height,
+          maxHeight: '100vh',
           margin: '0 auto',
           borderTopRightRadius: '12px',
           borderTopLeftRadius: '12px',
+          ...(sx as object),
         },
         zIndex: 999999,
       }}

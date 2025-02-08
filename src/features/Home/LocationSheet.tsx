@@ -9,7 +9,7 @@ type Props = {
 
 function LocationSheet({ onClose, openForm }: Props) {
   return (
-    <Sheet open={openForm} onClose={onClose} anchor="bottom">
+    <Sheet open={openForm} onClose={onClose}>
       <Sheet.Header onClose={onClose} title="مبدا" />
       <Sheet.Body>
         <CustomTextField
