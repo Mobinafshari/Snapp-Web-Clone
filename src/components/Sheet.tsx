@@ -1,11 +1,4 @@
-import {
-  Box,
-  Drawer,
-  IconButton,
-  SxProps,
-  Theme,
-  useMediaQuery,
-} from '@mui/material';
+import { Box, Drawer, DrawerProps, IconButton } from '@mui/material';
 import { CSSProperties, ReactNode } from 'react';
 import { Check, Close, CloseOutlined } from '@mui/icons-material';
 import CustomButton from './Button/CustomButton';
@@ -25,8 +18,8 @@ type SheetProps = {
   onClose?: () => void;
   width?: CSSProperties['width'] | ResponsiveWidth;
   height?: CSSProperties['height'] | ResponsiveWidth;
-  sx?: SxProps<Theme>;
-};
+  small?: boolean;
+} & DrawerProps;
 
 export default function Sheet({
   open,
@@ -35,14 +28,15 @@ export default function Sheet({
   rootElement,
   onClose,
   height = '96%',
-  sx,
+  small = false,
+  ...rest
 }: SheetProps) {
-  const isSmallScreen = useMediaQuery('(max-width:767px)');
-  const drawerAnchor = isSmallScreen ? 'bottom' : anchor;
+  console.log(height);
   return (
     <Drawer
+      {...rest}
       open={open}
-      anchor={drawerAnchor}
+      anchor={anchor}
       onClose={onClose}
       sx={{
         '& .MuiPaper-root': {
@@ -52,7 +46,6 @@ export default function Sheet({
           margin: '0 auto',
           borderTopRightRadius: '12px',
           borderTopLeftRadius: '12px',
-          ...(sx as object),
         },
         zIndex: 999999,
       }}
