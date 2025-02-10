@@ -1,4 +1,11 @@
-import { Box, Drawer, DrawerProps, IconButton } from '@mui/material';
+import {
+  Box,
+  Drawer,
+  DrawerProps,
+  IconButton,
+  SxProps,
+  Theme,
+} from '@mui/material';
 import { CSSProperties, ReactNode } from 'react';
 import { Check, Close, CloseOutlined } from '@mui/icons-material';
 import CustomButton from './Button/CustomButton';
@@ -29,7 +36,6 @@ export default function Sheet({
   height = '96%',
   ...rest
 }: SheetProps) {
-  console.log(height);
   return (
     <Drawer
       disableEnforceFocus
@@ -114,13 +120,20 @@ Sheet.Header = ({
   );
 };
 
-Sheet.Body = ({ children }: { children: ReactNode }) => {
+Sheet.Body = ({
+  children,
+  sx,
+}: {
+  children: ReactNode;
+  sx?: SxProps<Theme>;
+}) => {
   return (
     <Box
       sx={{
         flexGrow: 1,
         padding: '20px',
         overflow: 'auto',
+        ...sx,
       }}
     >
       {children}

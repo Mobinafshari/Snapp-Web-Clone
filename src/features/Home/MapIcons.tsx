@@ -3,6 +3,7 @@ import { IconButton, Badge } from '@mui/material';
 import styles from './styles/mapIcons.module.scss';
 import RideForSelector from './RideForSelector';
 import { useState } from 'react';
+import { useLocationStore } from 'store/location.store';
 type FormTypes = {
   RideFor: boolean;
 };
@@ -14,7 +15,11 @@ function MapIcons() {
   const toggleForm = (form: keyof FormTypes) => {
     setForm((prev) => ({ ...prev, [form]: !prev[form] }));
   };
-
+  const rideForValue = useLocationStore((state) => state.rideFor);
+  const rideFor = {
+    self: 'برای خودم',
+    others: 'برای دیگری',
+  };
   return (
     <>
       <div style={{ position: 'absolute', left: 0 }}>
@@ -47,7 +52,7 @@ function MapIcons() {
         className={styles['profile__dropdown']}
         onClick={() => toggleForm('RideFor')}
       >
-        برای خودم
+        {rideFor[rideForValue]}
         <KeyboardArrowDownOutlined color="primary" />
       </div>
       <RideForSelector
