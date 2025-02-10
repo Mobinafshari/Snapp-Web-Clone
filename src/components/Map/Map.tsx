@@ -17,6 +17,11 @@ export default function Map() {
   const API_KEY = import.meta.env.VITE_MAPTILER_API_KEY;
   const { fetchAddress } = useGetAddress();
   const [searchParams] = useSearchParams();
+  // const leafIcon = new L.icon({
+  //   iconUrl:
+  //     'https://docs.maptiler.com/sdk-js/examples/custom-points-icon-png/underground.png', //your custom pin
+  //   iconSize: [24, 26],
+  // });
   useEffect(() => {
     if (map.current || !mapContainer.current) return;
 
@@ -26,6 +31,9 @@ export default function Map() {
       style: maptilersdk.MapStyle.OPENSTREETMAP,
       center: [markerPosition.lng, markerPosition.lat],
       zoom: zoom,
+      terrainControl: false,
+      scaleControl: false,
+      geolocateControl: false,
     });
 
     markerRef.current = new maptilersdk.Marker({

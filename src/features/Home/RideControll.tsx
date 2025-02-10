@@ -3,6 +3,7 @@ import styles from './styles/controller.module.scss';
 import Location from './Location';
 import { useSearchParams } from 'react-router';
 import { useLocationStore } from 'store/location.store';
+import toast from 'react-hot-toast';
 
 function RideControll() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -14,7 +15,13 @@ function RideControll() {
         <CustomButton
           variant="contained"
           fullWidth
-          onClick={() => setSearchParams({ from: location })}
+          onClick={() => {
+            if (location) {
+              setSearchParams({ from: location });
+            } else {
+              toast.error('لطفا مکانی را انتخاب کنید');
+            }
+          }}
         >
           {searchParams.has('from') ? 'تایید مقصد' : 'تایید مبدا'}
         </CustomButton>
