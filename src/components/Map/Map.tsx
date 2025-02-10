@@ -3,6 +3,7 @@ import * as maptilersdk from '@maptiler/sdk';
 import '@maptiler/sdk/dist/maptiler-sdk.css';
 import styles from './map.module.scss';
 import useGetAddress from '@hooks/useGetAddress';
+import { useSearchParams } from 'react-router';
 
 export default function Map() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
@@ -15,7 +16,7 @@ export default function Map() {
   const zoom = 15;
   const API_KEY = import.meta.env.VITE_MAPTILER_API_KEY;
   const { fetchAddress } = useGetAddress();
-
+  const [searchParams] = useSearchParams();
   useEffect(() => {
     if (map.current || !mapContainer.current) return;
 
@@ -28,7 +29,7 @@ export default function Map() {
     });
 
     markerRef.current = new maptilersdk.Marker({
-      color: '#21aa58',
+      color: searchParams.has('from') ? 'green' : '#0077b6',
       draggable: true,
     })
       .setLngLat([markerPosition.lng, markerPosition.lat])

@@ -6,12 +6,14 @@ import {
   KeyboardArrowUpOutlined,
   SearchOutlined,
 } from '@mui/icons-material';
+import { useLocationStore } from 'store/location.store';
 
 function Location() {
   const [openSheet, setOpenSheet] = useState(false);
   const handleToggleForm = () => {
     setOpenSheet(!openSheet);
   };
+  const location = useLocationStore((state) => state.location);
   return (
     <>
       <div className={styles['controller__up']}>
@@ -26,7 +28,7 @@ function Location() {
             fontSize="small"
             style={{ color: '#575EFF', width: '15px' }}
           />
-          <h6>کجا هستید؟</h6>
+          <h6>{location ? location : 'کجا هستید؟'}</h6>
           <SearchOutlined />
         </div>
       </div>
