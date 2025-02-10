@@ -18,7 +18,6 @@ type SheetProps = {
   onClose?: () => void;
   width?: CSSProperties['width'] | ResponsiveWidth;
   height?: CSSProperties['height'] | ResponsiveWidth;
-  small?: boolean;
 } & DrawerProps;
 
 export default function Sheet({
@@ -28,12 +27,12 @@ export default function Sheet({
   rootElement,
   onClose,
   height = '96%',
-  small = false,
   ...rest
 }: SheetProps) {
   console.log(height);
   return (
     <Drawer
+      disableEnforceFocus
       {...rest}
       open={open}
       anchor={anchor}
