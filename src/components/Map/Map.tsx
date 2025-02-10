@@ -3,13 +3,11 @@ import * as maptilersdk from '@maptiler/sdk';
 import '@maptiler/sdk/dist/maptiler-sdk.css';
 import styles from './map.module.scss';
 import useGetAddress from '@hooks/useGetAddress';
-import { useLocationStore } from 'store/location.store';
 
 export default function Map() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<maptilersdk.Map | null>(null);
   const markerRef = useRef<maptilersdk.Marker | null>(null);
-  const address = useLocationStore((state) => state.location);
   const [markerPosition, setMarkerPosition] = useState({
     lng: 51.3371,
     lat: 35.6997,
@@ -45,6 +43,7 @@ export default function Map() {
 
     return () => map.current?.remove();
   }, [API_KEY]);
+
   return (
     <div className={styles['map-wrap']}>
       <div ref={mapContainer} className={styles['map']} />

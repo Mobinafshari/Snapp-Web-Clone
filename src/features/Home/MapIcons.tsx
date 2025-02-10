@@ -4,13 +4,16 @@ import styles from './styles/mapIcons.module.scss';
 import RideForSelector from './RideForSelector';
 import { useState } from 'react';
 import { useLocationStore } from 'store/location.store';
+import ProfileSheet from './ProfileSheet';
 type FormTypes = {
   RideFor: boolean;
+  Profile: boolean;
 };
 
 function MapIcons() {
   const [forms, setForm] = useState<FormTypes>({
     RideFor: false,
+    Profile: false,
   });
   const toggleForm = (form: keyof FormTypes) => {
     setForm((prev) => ({ ...prev, [form]: !prev[form] }));
@@ -26,6 +29,7 @@ function MapIcons() {
         <IconButton
           className={styles['profile']}
           style={{ backgroundColor: 'white', width: '48px', height: '48px' }}
+          onClick={() => toggleForm('Profile')}
         >
           <Badge
             badgeContent={1}
@@ -58,6 +62,10 @@ function MapIcons() {
       <RideForSelector
         openForm={forms.RideFor}
         onClose={() => toggleForm('RideFor')}
+      />
+      <ProfileSheet
+        openForm={forms.Profile}
+        onClose={() => toggleForm('Profile')}
       />
     </>
   );

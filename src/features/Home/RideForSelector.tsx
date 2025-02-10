@@ -26,7 +26,7 @@ function RideForSelector({ onClose, openForm }: Props) {
               sx={{
                 height: 4,
                 width: 24,
-                backgroundColor: '#d3d3d3',
+                backgroundColor: '#6c757d',
                 borderRadius: '8px',
               }}
             />
