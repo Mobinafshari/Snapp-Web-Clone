@@ -31,12 +31,16 @@ export default function Map() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<maptilersdk.Map | null>(null);
   const markerRef = useRef<maptilersdk.Marker | null>(null);
+  const targetMarkerRef = useRef<maptilersdk.Marker | null>(null);
 
   const [markerPosition, setMarkerPosition] = useState({
     lng: 51.3371,
     lat: 35.6997,
   });
-
+  const [startMarker, setStartMarker] = useState({
+    lng: 51.3371,
+    lat: 35.6997,
+  });
   const zoom = 15;
   const API_KEY = import.meta.env.VITE_MAPTILER_API_KEY;
   const { fetchAddress } = useGetAddress();
@@ -63,22 +67,27 @@ export default function Map() {
       .setLngLat([markerPosition.lng, markerPosition.lat])
       .addTo(map.current);
 
-    map.current.on('click', async (e) => {
-      const { lng, lat } = e.lngLat;
+    return () => map.current?.remove();
+  }, [API_KEY]);
 
+  useEffect(() => {
+    map?.current?.on('click', async (e) => {
+      const { lng, lat } = e.lngLat;
+      if (!searchParams.get('from')) {
+        console.log('first');
+        setStartMarker({
+          lat,
+          lng,
+        });
+      }
       setMarkerPosition({ lng, lat });
       markerRef.current?.setLngLat([lng, lat]);
 
       await fetchAddress({ lng, lat });
     });
-
-    return () => map.current?.remove();
-  }, [API_KEY]);
-
-  useEffect(() => {
     if (searchParams.get('from')) {
       new maptilersdk.Marker({ element: startDiv })
-        .setLngLat([markerPosition.lng, markerPosition.lat])
+        .setLngLat([startMarker.lng, startMarker.lat])
         .addTo(map.current!);
 
       markerRef.current = new maptilersdk.Marker({
@@ -89,8 +98,8 @@ export default function Map() {
         .addTo(map.current!);
     }
     if (searchParams.get('target')) {
-      new maptilersdk.Marker({ element: targetDiv })
-        .setLngLat([markerPosition.lng, markerPosition.lat])
+      targetMarkerRef.current = new maptilersdk.Marker({ element: targetDiv })
+        .setLngLat([markerPosition.lng + 0.001, markerPosition.lat])
         .addTo(map.current!);
       markerRef.current?.remove();
     }
