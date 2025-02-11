@@ -17,7 +17,13 @@ function RideControll() {
           fullWidth
           onClick={() => {
             if (location) {
-              setSearchParams({ from: location });
+              const currentParams = Object.fromEntries(searchParams.entries());
+
+              if (searchParams.get('from')) {
+                setSearchParams({ ...currentParams, target: location });
+              } else {
+                setSearchParams({ ...currentParams, from: location });
+              }
             } else {
               toast.error('لطفا مکانی را انتخاب کنید');
             }

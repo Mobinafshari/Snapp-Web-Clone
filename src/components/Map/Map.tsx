@@ -8,12 +8,24 @@ import { useSearchParams } from 'react-router';
 const startDiv = document.createElement('div');
 startDiv.innerText = 'مبدا';
 startDiv.style.padding = '5px 10px';
-startDiv.style.backgroundColor = '#ff5733';
+startDiv.style.backgroundColor = '#575EFF';
 startDiv.style.color = '#fff';
-startDiv.style.borderRadius = '5px';
-startDiv.style.fontWeight = 'bold';
+startDiv.style.borderRadius = '9999px';
+startDiv.style.fontFamily = 'IRANSansMobile';
+startDiv.style.fontSize = '16px';
 startDiv.style.textAlign = 'center';
 startDiv.style.cursor = 'pointer';
+
+const targetDiv = document.createElement('div');
+targetDiv.innerText = 'مقصد';
+targetDiv.style.padding = '5px 10px';
+targetDiv.style.backgroundColor = 'green';
+targetDiv.style.color = '#fff';
+targetDiv.style.borderRadius = '9999px';
+targetDiv.style.fontFamily = 'IRANSansMobile';
+targetDiv.style.fontSize = '16px';
+targetDiv.style.textAlign = 'center';
+targetDiv.style.cursor = 'pointer';
 
 export default function Map() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
@@ -68,6 +80,19 @@ export default function Map() {
       new maptilersdk.Marker({ element: startDiv })
         .setLngLat([markerPosition.lng, markerPosition.lat])
         .addTo(map.current!);
+
+      markerRef.current = new maptilersdk.Marker({
+        color: 'green',
+        draggable: true,
+      })
+        .setLngLat([markerPosition.lng + 0.001, markerPosition.lat])
+        .addTo(map.current!);
+    }
+    if (searchParams.get('target')) {
+      new maptilersdk.Marker({ element: targetDiv })
+        .setLngLat([markerPosition.lng, markerPosition.lat])
+        .addTo(map.current!);
+      markerRef.current?.remove();
     }
   }, [searchParams]);
   return (
