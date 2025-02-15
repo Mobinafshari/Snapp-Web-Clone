@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 
 function RideControll() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocationStore((state) => state.location);
+  const { location, position, setStart, setTarget } = useLocationStore();
   return (
     <div className={styles['controller']}>
       <Location />
@@ -20,8 +20,10 @@ function RideControll() {
               const currentParams = Object.fromEntries(searchParams.entries());
 
               if (searchParams.get('from')) {
+                setTarget(position.lat, position.lng);
                 setSearchParams({ ...currentParams, target: location });
               } else {
+                setStart(position.lat, position.lng);
                 setSearchParams({ ...currentParams, from: location });
               }
             } else {

@@ -4,6 +4,7 @@ import '@maptiler/sdk/dist/maptiler-sdk.css';
 import styles from './map.module.scss';
 import useGetAddress from '@hooks/useGetAddress';
 import { useSearchParams } from 'react-router';
+import { useLocationStore } from 'store/location.store';
 
 const startDiv = document.createElement('div');
 startDiv.innerText = 'مبدا';
@@ -37,15 +38,12 @@ export default function Map() {
     lng: 51.3371,
     lat: 35.6997,
   });
-  const [startMarker, setStartMarker] = useState({
-    lng: 51.3371,
-    lat: 35.6997,
-  });
+
   const zoom = 15;
   const API_KEY = import.meta.env.VITE_MAPTILER_API_KEY;
   const { fetchAddress } = useGetAddress();
   const [searchParams] = useSearchParams();
-
+  const { start, changePosition, target } = useLocationStore();
   useEffect(() => {
     if (map.current || !mapContainer.current) return;
 
@@ -73,23 +71,15 @@ export default function Map() {
   useEffect(() => {
     map?.current?.on('click', async (e) => {
       const { lng, lat } = e.lngLat;
-      if (!searchParams.get('from')) {
-        console.log('first');
-        setStartMarker({
-          lat,
-          lng,
-        });
-      }
       setMarkerPosition({ lng, lat });
+      changePosition(lat, lng);
       markerRef.current?.setLngLat([lng, lat]);
-
       await fetchAddress({ lng, lat });
     });
     if (searchParams.get('from')) {
       new maptilersdk.Marker({ element: startDiv })
-        .setLngLat([startMarker.lng, startMarker.lat])
+        .setLngLat([start.lng, start.lat])
         .addTo(map.current!);
-
       markerRef.current = new maptilersdk.Marker({
         color: 'green',
         draggable: true,
@@ -99,11 +89,11 @@ export default function Map() {
     }
     if (searchParams.get('target')) {
       targetMarkerRef.current = new maptilersdk.Marker({ element: targetDiv })
-        .setLngLat([markerPosition.lng + 0.001, markerPosition.lat])
+        .setLngLat([markerPosition.lng, markerPosition.lat])
         .addTo(map.current!);
       markerRef.current?.remove();
     }
-  }, [searchParams]);
+  }, [searchParams, start]);
   return (
     <div className={styles['map-wrap']}>
       <div ref={mapContainer} className={styles['map']} />
