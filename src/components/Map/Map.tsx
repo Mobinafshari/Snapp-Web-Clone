@@ -43,7 +43,7 @@ export default function Map() {
   const API_KEY = import.meta.env.VITE_MAPTILER_API_KEY;
   const { fetchAddress } = useGetAddress();
   const [searchParams] = useSearchParams();
-  const { start, changePosition, target } = useLocationStore();
+  const { start, changePosition } = useLocationStore();
   useEffect(() => {
     if (map.current || !mapContainer.current) return;
 
@@ -74,7 +74,7 @@ export default function Map() {
       setMarkerPosition({ lng, lat });
       changePosition(lat, lng);
       markerRef.current?.setLngLat([lng, lat]);
-      await fetchAddress({ lng, lat });
+      await fetchAddress();
     });
     if (searchParams.get('from')) {
       new maptilersdk.Marker({ element: startDiv })
