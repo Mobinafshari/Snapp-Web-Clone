@@ -6,7 +6,7 @@ function RideConfirmation() {
   return (
     <Sheet open={target.lat !== 0} onClose={() => {}} height="40%" hideBackdrop>
       <Sheet.Body>
-        <div></div>
+        <p>Hello</p>
       </Sheet.Body>
     </Sheet>
   );
