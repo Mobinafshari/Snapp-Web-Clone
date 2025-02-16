@@ -8,10 +8,14 @@ import RideConfirmation from './RideConfirmation';
 
 function RideControll() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { location, position, setStart, setTarget } = useLocationStore();
+  const { location, position, setStart, setTarget, target } =
+    useLocationStore();
   return (
     <>
-      <div className={styles['controller']}>
+      <div
+        className={styles['controller']}
+        style={{ display: target.lat !== 0 ? 'none' : '' }}
+      >
         <Location />
         <div className={styles['controller__button']}>
           <CustomButton
