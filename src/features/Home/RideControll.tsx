@@ -4,37 +4,43 @@ import Location from './Location';
 import { useSearchParams } from 'react-router';
 import { useLocationStore } from 'store/location.store';
 import toast from 'react-hot-toast';
+import RideConfirmation from './RideConfirmation';
 
 function RideControll() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { location, position, setStart, setTarget } = useLocationStore();
   return (
-    <div className={styles['controller']}>
-      <Location />
-      <div className={styles['controller__button']}>
-        <CustomButton
-          variant="contained"
-          fullWidth
-          onClick={() => {
-            if (location) {
-              const currentParams = Object.fromEntries(searchParams.entries());
+    <>
+      <div className={styles['controller']}>
+        <Location />
+        <div className={styles['controller__button']}>
+          <CustomButton
+            variant="contained"
+            fullWidth
+            onClick={() => {
+              if (location) {
+                const currentParams = Object.fromEntries(
+                  searchParams.entries()
+                );
 
-              if (searchParams.get('from')) {
-                setTarget(position.lat, position.lng);
-                setSearchParams({ ...currentParams, target: location });
+                if (searchParams.get('from')) {
+                  setTarget(position.lat, position.lng);
+                  setSearchParams({ ...currentParams, target: location });
+                } else {
+                  setStart(position.lat, position.lng);
+                  setSearchParams({ ...currentParams, from: location });
+                }
               } else {
-                setStart(position.lat, position.lng);
-                setSearchParams({ ...currentParams, from: location });
+                toast.error('لطفا مکانی را انتخاب کنید');
               }
-            } else {
-              toast.error('لطفا مکانی را انتخاب کنید');
-            }
-          }}
-        >
-          {searchParams.has('from') ? 'تایید مقصد' : 'تایید مبدا'}
-        </CustomButton>
+            }}
+          >
+            {searchParams.has('from') ? 'تایید مقصد' : 'تایید مبدا'}
+          </CustomButton>
+        </div>
       </div>
-    </div>
+      <RideConfirmation />
+    </>
   );
 }
 

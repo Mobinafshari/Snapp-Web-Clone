@@ -25,6 +25,7 @@ type SheetProps = {
   onClose?: () => void;
   width?: CSSProperties['width'] | ResponsiveWidth;
   height?: CSSProperties['height'] | ResponsiveWidth;
+  hideBackdrop?: boolean;
 } & DrawerProps;
 
 export default function Sheet({
@@ -34,11 +35,13 @@ export default function Sheet({
   rootElement,
   onClose,
   height = '96%',
+  hideBackdrop = false,
   ...rest
 }: SheetProps) {
   return (
     <Drawer
       disableEnforceFocus
+      hideBackdrop={hideBackdrop}
       {...rest}
       open={open}
       anchor={anchor}

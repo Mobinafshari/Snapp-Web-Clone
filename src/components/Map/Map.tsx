@@ -95,7 +95,6 @@ export default function Map() {
       if (start.lat !== 0 && target.lat !== 0) {
         const bounds = new maptilersdk.LngLatBounds();
         bounds.extend([start.lng, start.lat]);
-
         bounds.extend([target.lng, target.lat]);
 
         const distance = Math.sqrt(
