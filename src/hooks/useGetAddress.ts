@@ -5,7 +5,6 @@ import { useLocationStore } from 'store/location.store';
 const useGetAddress = () => {
   const target = useLocationStore((state) => state.target);
   const { lat, lng } = useLocationStore((state) => state.position);
-  console.log(lat, lng);
   const { mutateAsync: fetchAddress } = useMutation({
     mutationFn: () => {
       if (target.lat === 0) {

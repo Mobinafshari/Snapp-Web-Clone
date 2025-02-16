@@ -43,7 +43,7 @@ export default function Map() {
   const API_KEY = import.meta.env.VITE_MAPTILER_API_KEY;
   const { fetchAddress } = useGetAddress();
   const [searchParams] = useSearchParams();
-  const { start, changePosition } = useLocationStore();
+  const { start, changePosition, target } = useLocationStore();
   useEffect(() => {
     if (map.current || !mapContainer.current) return;
 
@@ -92,6 +92,35 @@ export default function Map() {
         .setLngLat([markerPosition.lng, markerPosition.lat])
         .addTo(map.current!);
       markerRef.current?.remove();
+      if (start.lat !== 0 && target.lat !== 0) {
+        const bounds = new maptilersdk.LngLatBounds();
+        bounds.extend([start.lng, start.lat]);
+
+        bounds.extend([target.lng, target.lat]);
+
+        const distance = Math.sqrt(
+          Math.pow(start.lng - target.lng, 2) +
+            Math.pow(start.lat - target.lat, 2)
+        );
+
+        if (distance < 0.01) {
+          map.current?.easeTo({
+            center: [
+              (start.lng + target.lng) / 2,
+              (start.lat + target.lat) / 2,
+            ],
+            zoom: 14,
+            duration: 1000,
+          });
+        } else {
+          map.current?.fitBounds(bounds, {
+            padding: 20,
+            duration: 1000,
+            maxZoom: 14,
+            linear: true,
+          });
+        }
+      }
     }
   }, [searchParams, start]);
   return (
