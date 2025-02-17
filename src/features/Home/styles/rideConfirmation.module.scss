@@ -1,0 +1,26 @@
+.tabs {
+  display: flex;
+  align-items: center;
+}
+
+.tab {
+  flex-basis: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  height: 40px;
+  font-size: 14px;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background-color: #252a3c;
+  transition: all 1.3s ease;
+}
