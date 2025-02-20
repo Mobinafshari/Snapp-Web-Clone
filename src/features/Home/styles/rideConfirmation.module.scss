@@ -31,10 +31,17 @@
   width: 100%;
 }
 .trip {
+  color: #252a3c;
   &-option {
     margin: 0 auto;
     font-size: 14px;
     font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: #252a3c;
+    cursor: pointer;
   }
   &-options {
     width: 100%;
@@ -45,5 +52,33 @@
   }
   &__button {
     padding: 16px 24px 24px;
+    button {
+      font-size: 14px;
+      height: 48px;
+    }
   }
+}
+.car {
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  cursor: pointer;
+  &__image {
+    width: 64px;
+  }
+  &-details {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+.price {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
 }
