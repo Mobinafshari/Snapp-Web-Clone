@@ -2,6 +2,8 @@ import Sheet from '@components/Sheet';
 import { useState } from 'react';
 import { useLocationStore } from 'store/location.store';
 import styles from './styles/rideConfirmation.module.scss';
+import { Button } from '@mui/material';
+import CustomIcon from '@assets/Icon';
 
 const Tabs = [{ title: 'ماشین' }, { title: 'موتور' }, { title: 'پیک' }];
 
@@ -25,6 +27,30 @@ function RideConfirmation() {
           </div>
         </div>
       </Sheet.Body>
+      <Sheet.Footer sx={{ height: 'auto' }}>
+        <div>
+          <div className={styles['line']}></div>
+          <div className={styles['trip-options']}>
+            <div className={styles['trip-option']}>
+              <span>
+                <CustomIcon icon="Options" svgProps={{ width: '24px' }} />
+              </span>
+              <span>گزینه های سفر</span>
+            </div>
+            <div className={styles['trip-option']}>
+              <span>
+                <CustomIcon icon="Code" svgProps={{ width: '24px' }} />
+              </span>
+              <span>کد تخفیف</span>
+            </div>
+          </div>
+          <div className={styles['trip__button']}>
+            <Button variant="contained" fullWidth sx={{ height: '48px' }}>
+              Snapp call
+            </Button>
+          </div>
+        </div>
+      </Sheet.Footer>
     </Sheet>
   );
 }

@@ -151,6 +151,7 @@ Sheet.Footer = ({
   loading = false,
   submitText,
   cancelText,
+  sx,
 }: (
   | {
       children?: never;
@@ -161,17 +162,18 @@ Sheet.Footer = ({
     }
   | {
       children: ReactNode;
-      submitText: string;
-      cancelText: string;
+      submitText?: string;
+      cancelText?: string;
       onSubmit?: never;
       onCancel?: never;
     }
-) & { loading?: boolean }) => {
+) & { loading?: boolean; sx?: SxProps<Theme> }) => {
   return (
     <Box
       sx={{
         height: 64,
         minHeight: 64,
+        ...sx,
       }}
     >
       {children ?? (
