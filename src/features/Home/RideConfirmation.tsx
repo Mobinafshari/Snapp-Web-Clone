@@ -37,8 +37,9 @@ function RideConfirmation() {
       onClose={() => {}}
       height="auto"
       hideBackdrop
+      disablePortal
     >
-      <Sheet.Body sx={{ padding: '0' }}>
+      <Sheet.Body sx={{ padding: '0', overflow: 'hidden' }}>
         <div>
           <div className={styles['tabs']}>
             {Tabs.map((tab, index) => (
