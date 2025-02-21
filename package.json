@@ -35,6 +35,7 @@
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "axios": "^1.7.9",
+    "framer-motion": "^12.4.7",
     "i18next": "^24.2.1",
     "maplibre-gl": "^5.1.0",
     "react": "^19.0.0",

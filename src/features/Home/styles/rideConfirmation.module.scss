@@ -30,6 +30,7 @@
   background-color: #f8f9ff;
   width: 100%;
 }
+
 .trip {
   color: #252a3c;
   &-option {
@@ -57,28 +58,4 @@
       height: 48px;
     }
   }
-}
-.car {
-  width: 100%;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 80px;
-  cursor: pointer;
-  &__image {
-    width: 64px;
-  }
-  &-details {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-}
-.price {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 14px;
 }

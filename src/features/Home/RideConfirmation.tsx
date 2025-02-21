@@ -4,53 +4,26 @@ import { useLocationStore } from 'store/location.store';
 import styles from './styles/rideConfirmation.module.scss';
 import { Button } from '@mui/material';
 import CustomIcon from '@assets/Icon';
-import ecoCarImage from '@assets/images/eco.png';
-import ecoPlusImage from '@assets/images/eco-plus.png';
+import CarConfirmation from './CarConfirmation';
+import BikeConfirmation from './BikeConfirmation';
+import CourierConfirmation from './CourierConfirmation';
 
-const Tabs: { title: string; content: JSX.Element }[] = [
+const Tabs: { title: string; content: JSX.Element; buttonText: string }[] = [
   {
     title: 'ماشین',
-    content: (
-      <div className={styles['cars']}>
-        <div className={styles['car']}>
-          <div className={styles['car-details']}>
-            <img
-              src={ecoCarImage}
-              alt="eco car"
-              className={styles['car__image']}
-            />
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <span>اسنپ</span>
-              <span style={{ fontSize: 12, color: '#686C79' }}>به صرفه</span>
-            </div>
-          </div>
-          <div className={styles['price']}>
-            <span>27,000</span>
-            <span>تومان</span>
-          </div>
-        </div>
-        <div className={styles['car']}>
-          <div className={styles['car-details']}>
-            <img
-              src={ecoPlusImage}
-              alt="eco plus car"
-              className={styles['car__image']}
-            />
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <span>اسنپ اکوپلاس</span>
-              <span style={{ fontSize: 12, color: '#686C79' }}>ویژه</span>
-            </div>
-          </div>
-          <div className={styles['price']}>
-            <span>52,000</span>
-            <span>تومان</span>
-          </div>
-        </div>
-      </div>
-    ),
+    content: <CarConfirmation />,
+    buttonText: 'درخواست اسنپ',
   },
-  { title: 'موتور', content: <div></div> },
-  { title: 'پیک', content: <div></div> },
+  {
+    title: 'موتور',
+    content: <BikeConfirmation />,
+    buttonText: 'درخواست اسنپ بایک',
+  },
+  {
+    title: 'پیک',
+    content: <CourierConfirmation />,
+    buttonText: 'وارد کردن جزییات',
+  },
 ];
 
 function RideConfirmation() {
@@ -64,7 +37,7 @@ function RideConfirmation() {
       height="auto"
       hideBackdrop
     >
-      <Sheet.Body sx={{ padding: '12px' }}>
+      <Sheet.Body sx={{ padding: '0' }}>
         <div>
           <div className={styles['tabs']}>
             {Tabs.map((tab, index) => (
@@ -94,7 +67,7 @@ function RideConfirmation() {
           </div>
           <div className={styles['trip__button']}>
             <Button variant="contained" fullWidth>
-              درخواست اسنپ
+              {Tabs[activeTab].buttonText}
             </Button>
           </div>
         </div>
