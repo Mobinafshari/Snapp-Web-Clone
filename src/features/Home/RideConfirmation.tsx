@@ -7,6 +7,7 @@ import CustomIcon from '@assets/Icon';
 import CarConfirmation from './CarConfirmation';
 import BikeConfirmation from './BikeConfirmation';
 import CourierConfirmation from './CourierConfirmation';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Tabs: { title: string; content: JSX.Element; buttonText: string }[] = [
   {
@@ -49,7 +50,18 @@ function RideConfirmation() {
               />
             ))}
           </div>
-          {Tabs[activeTab].content}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              layout
+              // initial={{ height: '200px' }}
+              // animate={{ height: 'auto' }}
+              // exit={{ height: 'auto' }}
+              transition={{ duration: 0.2, ease: 'easeInOut' }}
+            >
+              {Tabs[activeTab].content}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </Sheet.Body>
       <Sheet.Footer sx={{ height: 'auto' }}>
