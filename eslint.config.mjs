@@ -3,12 +3,13 @@ import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import pluginReact from 'eslint-plugin-react';
 import testingLibrary from 'eslint-plugin-testing-library';
+import storybook from 'eslint-plugin-storybook';
 import { fixupPluginRules } from '@eslint/compat';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   { ignores: ['node_modules', 'dist', 'cypress'] },
-  { files: ['src/**/*.{js,mjs,cjs,ts,jsx,tsx}', 'test/**/test.{ts , tsx}'] },
+  { files: ['src/**/*.{js,mjs,cjs,ts,jsx,tsx}', 'test/**/test.{ts,tsx}'] },
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
@@ -29,6 +30,9 @@ export default [
       'testing-library': fixupPluginRules({
         rules: testingLibrary.rules,
       }),
+      storybook: fixupPluginRules({
+        rules: storybook.rules,
+      }),
     },
   },
   {
@@ -47,7 +51,7 @@ export default [
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
       'no-constant-condition': 'off',
-      "react/display-name" : "off"
+      'react/display-name': 'off',
     },
   },
 ];

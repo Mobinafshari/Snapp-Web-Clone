@@ -4,3 +4,5 @@ dist/
 .env
 .codegpt
 cli.js
+
+*storybook.log
