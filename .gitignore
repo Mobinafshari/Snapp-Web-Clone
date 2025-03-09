@@ -4,5 +4,5 @@ dist/
 .env
 .codegpt
 cli.js
-
+server/node_modules
 *storybook.log
