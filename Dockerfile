@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:20-slim
+FROM node:20-alpine
 
 # Set the working directory in the container
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Copy the rest of the application code to the working directory
 COPY . .
@@ -18,7 +18,7 @@ RUN npm run build
 
 # Use a lightweight web server to serve the React app
 FROM nginx:alpine
-COPY --from=0 /app/build /usr/share/nginx/html
+COPY --from=0 /app/dist /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
