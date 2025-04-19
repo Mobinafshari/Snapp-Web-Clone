@@ -20,12 +20,12 @@ export default defineConfig({
             if (id.includes('axios')) {
               return 'axios-vendor';
             }
-            return 'vendor';
+            // return 'vendor';
           }
-          if (id.includes('src/features/')) {
-            const feature = id.split('src/features/')[1].split('/')[0];
-            return `feature-${feature}`;
-          }
+          // if (id.includes('src/features/')) {
+          //   const feature = id.split('src/features/')[1].split('/')[0];
+          //   return `feature-${feature}`;
+          // }
         },
         chunkFileNames: 'chunks/[name]-[hash].js',
         entryFileNames: 'entries/[name]-[hash].js',

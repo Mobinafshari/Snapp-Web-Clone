@@ -1,9 +1,14 @@
 import '@config/i18n';
-import Auth from '@features/authentication/Auth';
-import OTPForm from '@features/authentication/OTPForm';
-import PhoneForm from '@features/authentication/PhoneForm';
-import Home from '@features/Home/Home';
+import { retryDynamicImport } from '@utils/retryDynamicImport';
 import { Routes, Route, Navigate } from 'react-router';
+const Auth = retryDynamicImport(() => import('@features/authentication/Auth'));
+const OTPForm = retryDynamicImport(
+  () => import('@features/authentication/OTPForm')
+);
+const PhoneForm = retryDynamicImport(
+  () => import('@features/authentication/PhoneForm')
+);
+const Home = retryDynamicImport(() => import('@features/Home/Home'));
 
 function App() {
   return (
